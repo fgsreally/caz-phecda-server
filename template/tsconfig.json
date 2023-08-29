@@ -1,21 +1,21 @@
 {
+
   "compilerOptions": {
     "target": "es2022",
     "baseUrl": ".",
-
-    "composite":true,
     "useDefineForClassFields": false,
-    "allowSyntheticDefaultImports":true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "es2022",
-    "lib": ["es2022", "DOM"],
+    "module": "CommonJS",
+    "lib": ["es2022"],
     "moduleResolution": "Node",
     "strict": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "esModuleInterop": false,
-    "noEmit": true,
+    "esModuleInterop": true,
+    "noEmit": false,
+    "outDir":"dist",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -24,5 +24,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src","vite.config.ts"]
+  "include": ["src/**/*.ts", "__test__/**/*"]
 }
+  

@@ -2,33 +2,55 @@
   "name": "{{name}}",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "prod":"node dist/main.js"
+    "dev": "nodemon src/main.ts",
+    "build": "tsup",
+    "prod": "tsc",
+    {{if test}}
+    "test": "vitest"
+    {{/if}}
+    "start:prod": " node dist/src/main.js"
+
   },
   "devDependencies": {
-    "@swc/core": "^1.3.53",
-    "@types/bcryptjs": "^2.4.2",
+    {{if test}}
+  "unplugin-swc-esm": "^1.0.2",
+    "vitest": "^0.33.0",
+    {{if db==='typegoose'}}
+      "mongodb-memory-server": "^8.13.0",
+    {{/if}}
+    {{/if}}
+      "nodemon": "^3.0.1",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    {{if lib}}
+    "tsup": "^6.5.0",
+    {{/if}}
+    {{if jwt}}
     "@types/jsonwebtoken": "^9.0.2",
-    "typescript": "^4.9.3",
-    "vite": "^4.2.0",
-    "vite-plugin-node": "^3.0.2"
+    {{/if}}
+    "typescript": "^4.9.3"
   },
   "dependencies": {
     {{if db==='typegoose'}}
     "@typegoose/typegoose": "^11.0.2",
     "mongoose": "^7.0.4",
     {{/if}}
+
+    {{if jwt}}
+    "jsonwebtoken": "^9.0.0",
     "bcryptjs": "^2.4.3",
+    {{/if}}
     "cors": "^2.8.5",
     "dayjs": "^1.11.8",
+        "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
     {{if file}}
     "multer": "1.4.5-lts.1",
     "unzipper": "^0.10.14",

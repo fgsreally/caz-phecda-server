@@ -27,7 +27,24 @@ module.exports = {
       message: 'Use upload module',
       initial: true
     },
-
+    {
+      name: 'lib',
+      type: 'confirm',
+      message: 'export as a lib',
+      initial: true
+    },
+    {
+      name: 'jwt',
+      type: 'confirm',
+      message: 'Use jwt token',
+      initial: true
+    },
+    {
+      name: 'test',
+      type: 'confirm',
+      message: 'Add unit-test',
+      initial: true
+    },
     {
       name: 'logger',
       type: 'confirm',
@@ -50,7 +67,9 @@ module.exports = {
   filters:{
   'src/modules/file':({file})=>!!file,
   'src/middlewares/upload.ts':({file})=>!!file,
-   'src/utils/logger.ts':({logger})=>!!logger
+   'src/utils/logger.ts':({logger})=>!!logger,
+   'vitest.config.ts':({test})=>!!test,
+   'tsup.config.ts':({lib})=>!!lib
   },
 
   complete: async ctx => {
